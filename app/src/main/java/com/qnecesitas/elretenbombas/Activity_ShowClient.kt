@@ -15,6 +15,7 @@ class Activity_ShowClient : AppCompatActivity() {
         binding = ActivityShowClientBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         //Toolbar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
