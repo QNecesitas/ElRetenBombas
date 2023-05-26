@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="icons_folders">30dp</dimen>
+
+    <!--Text sizes-->
+    <dimen name="textSize_xh">24sp</dimen>
+    <dimen name="textSize_h">20sp</dimen>
+    <dimen name="textSize_mh">18sp</dimen>
+    <dimen name="textSize_m">16sp</dimen>
+    <dimen name="textSize_s">14sp</dimen>
+    <dimen name="textSize_xs">12sp</dimen>
+
+    <dimen name="standard_card_corner_radius">20dp</dimen>
+    <dimen name="standard_card_elevation">8dp</dimen>
+    <dimen name="standard_traslationZ">8dp</dimen>
+
+</resources>
