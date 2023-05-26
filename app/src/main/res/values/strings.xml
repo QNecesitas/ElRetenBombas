@@ -9,4 +9,8 @@
     <string name="fecha">Fecha</string>
     <string name="No_hay_clientes">No hay clientes</string>
     <string name="clientes">Clientes</string>
+    <string name="Dia">Día</string>
+    <string name="Mes">Mes</string>
+    <string name="Anno">Año</string>
+    <string name="todo">Todo</string>
 </resources>
