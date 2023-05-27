@@ -9,4 +9,13 @@
     <string name="fecha">Fecha</string>
     <string name="No_hay_clientes">No hay clientes</string>
     <string name="clientes">Clientes</string>
+    <string name="agregar_cliente">Agregar cliente</string>
+    <string name="nombre">Nombre</string>
+    <string name="ci">CI</string>
+    <string name="telefono">Teléfono</string>
+    <string name="tipo_de_bomba">Tipo de bomba</string>
+    <string name="medida_del_copli">Medida del copli</string>
+    <string name="medida_del_imperente">Medida del imperente</string>
+    <string name="garantia">Garantía</string>
+    <string name="descripción">Descripción</string>
 </resources>

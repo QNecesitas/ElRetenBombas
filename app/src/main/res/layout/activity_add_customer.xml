@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--Toolbar--> <!--TODO add theme-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:title="@string/agregar_cliente"
+            app:titleTextColor="@color/white">
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="69sp"
+                android:layout_marginStart="15sp">
+
+                <ImageView
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
+                    android:background="@drawable/clientimage"
+                    android:src="@drawable/accountcustomer"
+                    android:translationZ="8dp">
+
+
+                </ImageView>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="300sp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nombre"
+                        android:inputType="textPersonName"
+                        android:gravity="center"
+                        android:maxLength="100">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="15sp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="250sp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ci"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:maxLength="11">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="15sp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="250sp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/telefono"
+                    android:inputType="phone"
+                    android:gravity="center"
+                    android:maxLength="8">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="15sp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="300sp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/tipo_de_bomba"
+                    android:inputType="text"
+                    android:gravity="center"
+                    android:maxLength="100">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="15sp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="300sp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/medida_del_copli"
+                    android:inputType="text"
+                    android:gravity="center"
+                    android:maxLength="100">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="15sp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="340sp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/medida_del_imperente"
+                    android:inputType="text"
+                    android:gravity="center"
+                    android:maxLength="100">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="15sp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="200sp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/garantia"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:maxLength="10">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="15sp"
+                android:layout_marginTop="10sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha:">
+
+                </TextView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="día/mes/año"
+                    android:layout_marginStart="10sp">
+
+                </TextView>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="15sp"
+                android:layout_marginEnd="15sp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/descripción"
+                    android:inputType="text"
+                    android:gravity="center"
+                    android:maxLength="250">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="Guardar"
+                app:icon="@drawable/baseline_save_24"
+                android:layout_margin="12sp">
+
+            </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
