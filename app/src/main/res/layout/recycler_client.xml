@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="@dimen/standard_card_corner_radius"
+        android:translationZ="@dimen/standard_traslationZ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <!--cl container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cvContainer"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <!--iv User-->
+            <ImageView
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/outline_account_circle_24"
+                android:id="@+id/ivUserIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <!--tv name static-->
+            <TextView
+                android:id="@+id/tvClientS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/nombreS"
+                android:textSize="@dimen/textSize_m"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/ivUserIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <!--tv name-->
+            <TextView
+                android:id="@+id/tvClient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/nombre"
+                android:textSize="@dimen/textSize_m"
+                app:layout_constraintStart_toEndOf="@id/tvClientS"
+                app:layout_constraintTop_toTopOf="@id/tvClientS" />
+
+
+            <!--tv Date Static-->
+            <TextView
+                android:id="@+id/tvDateS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fechaS"
+                android:textSize="@dimen/textSize_m"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/tvClientS"
+                app:layout_constraintTop_toBottomOf="@+id/tvClientS" />
+
+
+            <!--tv Date-->
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Fecha"
+                android:textSize="@dimen/textSize_m"
+                app:layout_constraintStart_toEndOf="@id/tvDateS"
+                app:layout_constraintTop_toTopOf="@+id/tvDateS" />
+
+
+            <!--iv Close-->
+            <ImageView
+                android:id="@+id/ivClose"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/baseline_close_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
