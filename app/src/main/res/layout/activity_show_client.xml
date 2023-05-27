@@ -27,7 +27,7 @@
 
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_icon_search"
+                android:id="@+id/ivIconSearch"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="end"
@@ -36,7 +36,7 @@
                 android:visibility="visible" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_search"
+                android:id="@+id/clSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone">
@@ -50,12 +50,12 @@
                     android:queryBackground="@drawable/almostredonded_price_white"
                     android:queryHint="@string/Buscar_cliente"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/iv_close_search"
+                    app:layout_constraintEnd_toStartOf="@id/ivCloseSearch"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_close_search"
+                    android:id="@+id/ivCloseSearch"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="end"
@@ -105,19 +105,19 @@
                 app:layout_constraintTop_toTopOf="@+id/iv_filter" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_date"
+                android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="@string/fecha"
                 android:textSize="@dimen/textSize_m"
                 android:textStyle="italic"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_date"
-                app:layout_constraintEnd_toStartOf="@id/iv_date"
-                app:layout_constraintTop_toTopOf="@+id/iv_date" />
+                app:layout_constraintBottom_toBottomOf="@+id/ivDate"
+                app:layout_constraintEnd_toStartOf="@id/ivDate"
+                app:layout_constraintTop_toTopOf="@+id/ivDate" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_date"
+                android:id="@+id/ivDate"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="4dp"
@@ -153,7 +153,7 @@
 
             <!--Recycler-->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_sales"
+                android:id="@+id/rvSales"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -164,7 +164,7 @@
 
         <!-- CL Not info -->
         <LinearLayout
-            android:id="@+id/not_info"
+            android:id="@+id/notInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
