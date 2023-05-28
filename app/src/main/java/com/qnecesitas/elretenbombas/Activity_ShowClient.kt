@@ -11,19 +11,24 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SearchView
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.qnecesitas.elretenbombas.adapters.AdapterR_Client
-import com.qnecesitas.elretenbombas.auxiliary.NetworkTools
-import com.qnecesitas.elretenbombas.data.ModelClient
+import com.qnecesitas.elretenbombas.adapters.ClientAdapter
+import com.qnecesitas.elretenbombas.data.ClientViewModelFactory
+import com.qnecesitas.elretenbombas.data.ShowClientViewModel
+import com.qnecesitas.elretenbombas.database.Client
 import com.qnecesitas.elretenbombas.databinding.ActivityShowClientBinding
 import com.qnecesitas.elretenbombas.databinding.LiClientBinding
 import com.qnecesitas.elretenbombas.databinding.LiDateYBinding
 import com.qnecesitas.elretenbombas.databinding.LiDateYmBinding
 import com.qnecesitas.elretenbombas.databinding.LiDateYmdBinding
-import com.shashank.sony.fancytoastlib.FancyToast
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
 class Activity_ShowClient : AppCompatActivity() {
@@ -38,17 +43,19 @@ class Activity_ShowClient : AppCompatActivity() {
     private var month = 0
     private var day = 0
 
-    //Recycler
-    private lateinit var adapterrClient: AdapterR_Client
-    private lateinit var alClient: ArrayList<ModelClient>
-
     //Filter
     private var lastFilterStr = ""
+    private val alClient = ArrayList<Client>()
+
+    //ViewModel
+    private val viewModel: ShowClientViewModel by viewModels {
+        ClientViewModelFactory(
+            (application as ElRetenApplication).database.clientDao()
+        )
+    }
 
 
-
-
-
+    @DelicateCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityShowClientBinding.inflate(layoutInflater)
@@ -116,7 +123,8 @@ class Activity_ShowClient : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapterrClient.getFilter()?.filter(newText)
+                //adapterrClient.getFilter()?.filter(newText)
+                //TODO
                 lastFilterStr = newText.toString()
                 return false
             }
@@ -143,23 +151,27 @@ class Activity_ShowClient : AppCompatActivity() {
 
 
         //Recycler
-        alClient = ArrayList()
-        adapterrClient = AdapterR_Client(alClient,this)
-        binding.rvSales.adapter = adapterrClient
-        adapterrClient.setCloseClick(object : AdapterR_Client.ITouchClose{
+        val clientAdapter = ClientAdapter(this@Activity_ShowClient)
+        binding.rvClients.adapter = clientAdapter
+        clientAdapter.setCloseClick(object : ClientAdapter.ITouchClose{
             override fun onClickClose(position: Int) {
                 showAlertCloseSales(position)
             }
         })
-        adapterrClient.setClick(object: AdapterR_Client.ITouchCV{
+        clientAdapter.setClick(object : ClientAdapter.ITouchCV{
             override fun onClick(position: Int) {
                 li_client(position)
             }
+
         })
 
 
         //Recycler
-        loadRecyclerInfoAll()
+        GlobalScope.launch(Dispatchers.IO) {
+            viewModel.getAllClients().collect(){
+                clientAdapter.submitList(it)
+            }
+        }
 
     }
 
