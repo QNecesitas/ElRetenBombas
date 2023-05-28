@@ -6,8 +6,7 @@
             android:shape="oval">
 
             <solid
-                android:color="@color/white"
-                android:widht="2sp"/>
+                android:color="@color/white"/>
 
         </shape>
     </item>

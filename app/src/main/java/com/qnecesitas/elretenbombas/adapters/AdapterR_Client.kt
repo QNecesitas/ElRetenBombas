@@ -2,27 +2,26 @@ package com.qnecesitas.elretenbombas.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
 import com.qnecesitas.elretenbombas.R
-import com.qnecesitas.elretenbombas.data.ModelClient
+import com.qnecesitas.elretenbombas.database.Client
 import com.qnecesitas.elretenbombas.databinding.RecyclerClientBinding
 import java.util.Locale
 
-class AdapterR_Client(val alClient: ArrayList<ModelClient>, private val context: Context):
+class AdapterR_Client(val alClient: ArrayList<Client>, private val context: Context):
     RecyclerView.Adapter<AdapterR_Client.ClientViewHolder>(){
 
     private var customFilter: AdapterR_Client.CustomFilter? = null
-    private var alFilter: ArrayList<ModelClient> = ArrayList()
+    private var alFilter: ArrayList<Client> = ArrayList()
     private var clickClose: ITouchClose? = null
     private var click: ITouchCV? = null
 
     class ClientViewHolder(private val binding: RecyclerClientBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(
-            modelClient: ModelClient,
+            modelClient: Client,
             context: Context,
             position: Int,
             clickCLose: ITouchClose?,
@@ -34,7 +33,7 @@ class AdapterR_Client(val alClient: ArrayList<ModelClient>, private val context:
             val mes = modelClient.month.toString()
             val anio = modelClient.year.toString()
 
-            binding.tvClient.text = nombre
+            binding.tvClientS.text = nombre
             binding.tvDate.text = context.getString(R.string.Fecha,dia,mes,anio)
 
 
