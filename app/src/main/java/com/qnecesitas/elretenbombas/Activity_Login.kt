@@ -52,6 +52,16 @@ class Activity_Login : AppCompatActivity() {
         }
 
 
+        binding.tvAboutUs.setOnClickListener{
+            val intent = Intent(this, Activity_AboutUs::class.java)
+            startActivity(intent)
+        }
+
+        binding.tvAboutDev.setOnClickListener{
+            val intent = Intent(this, Activity_AboutDev::class.java)
+            startActivity(intent)
+        }
+
     }
 
 

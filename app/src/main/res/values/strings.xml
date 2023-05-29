@@ -45,7 +45,6 @@
     <string name="Se_ha_producido_un_error">Se ha producido un error</string>
     <string name="Password">Contraseña</string>
     <string name="Start_session">Iniciar sesión</string>
-
     <string name="agregar_cliente">Agregar cliente</string>
     <string name="nombre">Nombre</string>
     <string name="telefono">Teléfono</string>
@@ -56,4 +55,28 @@
     <string name="descripción">Descripción</string>
     <string name="Este_campo_no_debe">Este campo no debe estar vacío</string>
     <string name="Contrasena_incorrecta">Contraseña incorrecta</string>
+    <string name="sobre_nosotros">Sobre nosotros:</string>
+    <string name="negocio_particular">Negocio particular</string>
+    <string name="_53_58419241">+53 58419241</string>
+    <string name="sobre_nosotros_desc">"Tenga una cordial bienvenida a El Retén, tu tienda de confianza para encontrar las mejores piezas del mercado. Nos especializamos en ofrecer una amplia selección de piezas de alta calidad para todo tipo de motores. En El Retén, nuestra misión es brindar a nuestros clientes un servicio excepcional y un conocimiento experto en dicha industria"</string>
+    <string name="Acerca_de_nosotros">Sobre nosotros</string>
+    <string name="El_reten">El Retén</string>
+    <string name="direccion_negocio">Calzada de Luyanó, municipio 10 de Octubre, #727, e/ Concha y Porvenir, La Habana</string>
+    <string name="q_necesitas">QNecesitas</string>
+    <string name="productos_inform_ticos">Productos Informáticos</string>
+    <string name="Nuestro_numero">+53 55759386</string>
+    <string name="ronnynordelo_gmail_com">ronnynordelo@gmail.com</string>
+    <string name="mision_nuestra">El enfoque que buscamos es el de una empresa acogedora, cuyos complicados servicios sean llevados a los clientes de forma fácil de comprender. Cuba es un país poco informatizado por lo que tenemos noción de que la mayoría de nuestros clientes conocen la importancia de llevar su negocio a las redes y la tecnología pero sus conocimientos de aplicaciones y páginas web son pocos o ninguno, así que si ese es su caso no se preocupe, solo tiene que decirnos alguna idea que tenga o la información que quiere informatizar y haremos magia.</string>
+    <string name="qnecesitas_nat_cu">qnecesitas.nat.cu</string>
+    <string name="https_www_facebook_com_qnecesitas_paginaprincipal">https://www.facebook.com/qnecesitas.paginaprincipal</string>
+    <string name="misi_n">Misión:</string>
+    <string name="Cambiar_contrase_as_admin">Cambiar contraseña</string>
+    <string name="Contrase_a_actual">Contraseña actual</string>
+    <string name="Contrase_nueva">Contraseña nueva</string>
+    <string name="Contrase_a_confirmar">Confirme la nueva</string>
+    <string name="Configuraci_n">Configuración</string>
+    <string name="los_campos_no_coinciden">No coinciden la contraseña a confirmar y la nueva</string>
+    <string name="opciones_de_base_de_datos">Opciones de Base de Datos</string>
+    <string name="exportar_base_de_datos">Exportar Base de Datos</string>
+    <string name="importar_base_de_datos">Importar Base de Datos</string>
 </resources>
