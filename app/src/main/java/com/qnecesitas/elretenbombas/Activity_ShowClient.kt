@@ -168,7 +168,8 @@ class Activity_ShowClient : AppCompatActivity() {
 
         //Recycler
         GlobalScope.launch(Dispatchers.IO) {
-            viewModel.getAllClients().collect(){
+            viewModel.getAllClients()
+            viewModel.alClients.value?.collect {
                 clientAdapter.submitList(it)
             }
         }

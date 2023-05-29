@@ -1,16 +1,27 @@
 package com.qnecesitas.elretenbombas.data
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.qnecesitas.elretenbombas.database.Client
 import com.qnecesitas.elretenbombas.database.ClientDao
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filter
 
 class ShowClientViewModel( private val clientDao: ClientDao): ViewModel() {
 
-    //val alClient: LiveData<ArrayList<Client>> =
-    fun getAllClients(): Flow<List<Client>> = clientDao.fetchClients()
+    private val _alClients = MutableLiveData<Flow<List<Client>>>()
+    val alClients: LiveData<Flow<List<Client>>> get() = _alClients
+
+
+    fun getAllClients() {
+        _alClients.postValue(clientDao.fetchClients())
+    }
+
+    fun filterByText(text: String){
+
+    }
 
 }
 

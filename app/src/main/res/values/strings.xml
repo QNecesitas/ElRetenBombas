@@ -54,4 +54,6 @@
     <string name="medida_del_imperente">Medida del imperente</string>
     <string name="garantia">Garantía</string>
     <string name="descripción">Descripción</string>
+    <string name="Este_campo_no_debe">Este campo no debe estar vacío</string>
+    <string name="Contrasena_incorrecta">Contraseña incorrecta</string>
 </resources>

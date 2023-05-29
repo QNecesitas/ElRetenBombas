@@ -12,9 +12,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:padding="50dp"
+        app:layout_constraintVertical_bias="0.6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,15 +24,16 @@
         <!--IV Logo Company-->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/AL_IV_LogoCompany"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:background="@drawable/circular_background"
             android:padding="12dp"
-            android:src="@drawable/assignment"
+            android:src="@drawable/baseline_home_repair_service_24"
             android:translationZ="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?attr/colorPrimary"/>
 
 
         <!--ET Password-->
@@ -40,7 +42,7 @@
             style="@style/CustomBorderTIlLogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="50dp"
             app:errorIconTint="@color/white"
             app:errorTextColor="@color/white"
             app:hintTextColor="@color/white"
