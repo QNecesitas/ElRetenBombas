@@ -6,15 +6,15 @@
 
     <androidx.cardview.widget.CardView
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        app:cardCornerRadius="@dimen/standard_card_corner_radius"
-        android:translationZ="@dimen/standard_traslationZ"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        app:cardCornerRadius="@dimen/card_view_corner"
+        android:translationZ="@dimen/card_view_elevation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp">
 
 
         <!--cl container-->
@@ -78,7 +78,7 @@
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Fecha"
+                android:text="@string/Fecha_fill"
                 android:textSize="@dimen/textSize_m"
                 app:layout_constraintStart_toEndOf="@id/tvDateS"
                 app:layout_constraintTop_toTopOf="@+id/tvDateS" />
@@ -86,12 +86,14 @@
 
             <!--iv Close-->
             <ImageView
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/ivClose"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/baseline_close_24"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/baseline_keyboard_arrow_right_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorControlNormal" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

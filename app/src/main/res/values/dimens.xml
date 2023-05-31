@@ -14,4 +14,7 @@
     <dimen name="standard_card_elevation">8dp</dimen>
     <dimen name="standard_traslationZ">8dp</dimen>
 
+    <dimen name="card_view_corner">4dp</dimen>
+    <dimen name="card_view_elevation">4dp</dimen>
+
 </resources>

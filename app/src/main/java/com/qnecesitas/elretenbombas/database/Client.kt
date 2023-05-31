@@ -8,17 +8,21 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Client(
-    @PrimaryKey var c_client: Int,
-    @NonNull @ColumnInfo(name = "name") var name: String,
-    @NonNull @ColumnInfo(name = "day") var day: Int,
-    @NonNull @ColumnInfo(name = "month") var month: Int,
-    @NonNull @ColumnInfo(name = "year") var year: Int,
-    @NonNull @ColumnInfo(name = "phone") var phone: String,
-    @NonNull @ColumnInfo(name = "waterBomb") var waterBomb: String,
-    @NonNull @ColumnInfo(name = "copli") var copli: String,
-    @NonNull @ColumnInfo(name = "imperente") var imperente: String,
-    @NonNull @ColumnInfo(name = "price") var price: Double,
-    @NonNull @ColumnInfo(name = "warranty") var warranty: Int,
-    @NonNull @ColumnInfo(name = "descWork") var descWork: String,
-    @NonNull @ColumnInfo(name = "descClient") var descClient: String
+    @PrimaryKey(autoGenerate = true) var c_client: Int,
+    @ColumnInfo(name = "ci") var ci: String,
+    @ColumnInfo(name = "name") var name: String,
+    @ColumnInfo(name = "day") var day: Int,
+    @ColumnInfo(name = "month") var month: Int,
+    @ColumnInfo(name = "year") var year: Int,
+    @ColumnInfo(name = "phone") var phone: String,
+    @ColumnInfo(name = "waterBomb") var waterBomb: String,
+    @ColumnInfo(name = "copli") var copli: String,
+    @ColumnInfo(name = "imperente") var imperente: String,
+    @ColumnInfo(name = "price1") var price1: Double,
+    @ColumnInfo(name = "typePrice1") var typePrice1: String,
+    @ColumnInfo(name = "price2") var price2: Double,
+    @ColumnInfo(name = "typePrice2") var typePrice2: String,
+    @ColumnInfo(name = "warranty") var warranty: Int,
+    @ColumnInfo(name = "descWork") var descWork: String,
+    @ColumnInfo(name = "descClient") var descClient: String
 )

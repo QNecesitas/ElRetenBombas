@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ElRetenBombas</string>
+    <string name="app_name">Control de Bombas</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Revise_su_conexion">Revise su conexión a Internet e intente de nuevo</string>
     <string name="Reintentar">Reintentar</string>
@@ -15,7 +15,7 @@
     <string name="todo">Todo</string>
     <string name="nombreS">Nombre:</string>
     <string name="fechaS">Fecha: </string>
-    <string name="Fecha">%s/%s/%s</string>
+    <string name="Fecha_fill">%s/%s/%s</string>
     <string name="garant_a">Garantía: </string>
     <string name="sobre_nosotrosx">Sobre nosotros</string>
     <string name="about_dev">Sobre desarrolladores</string>
@@ -23,14 +23,14 @@
     <string name="ciS">CI:</string>
     <string name="tel_fono">Teléfono:</string>
     <string name="tipo_de_bomba_de_agua">Tipo de bomba de agua:</string>
-    <string name="medida_del_copliS">Medida del copli:</string>
+    <string name="medida_del_copliS">Medida del coplin:</string>
     <string name="medida_del_imperenteS">Medida del imperente:</string>
-    <string name="precio_de_c_bro">Precio de cóbro:</string>
+    <string name="precio_de_c_bro">Precio de cobro:</string>
     <string name="descripci_n_del_trabajo">Descripción del trabajo:</string>
     <string name="descripci_n_cliente">Descripción cliente:</string>
     <string name="ci">CI</string>
     <string name="bomba">Bomba</string>
-    <string name="copli">Copli</string>
+    <string name="copli">Coplin</string>
     <string name="imp">Imp</string>
     <string name="precio">Precio</string>
     <string name="cancelar">Cancelar</string>
@@ -49,10 +49,11 @@
     <string name="nombre">Nombre</string>
     <string name="telefono">Teléfono</string>
     <string name="tipo_de_bomba">Tipo de bomba</string>
-    <string name="medida_del_copli">Medida del copli</string>
+    <string name="medida_del_copli">Medida del coplin</string>
     <string name="medida_del_imperente">Medida del imperente</string>
     <string name="garantia">Garantía</string>
-    <string name="descripción">Descripción</string>
+    <string name="descripcion_client">Descripción del cliente</string>
+    <string name="descripcion_work">Descripción del trabajo</string>
     <string name="Este_campo_no_debe">Este campo no debe estar vacío</string>
     <string name="Contrasena_incorrecta">Contraseña incorrecta</string>
     <string name="sobre_nosotros">Sobre nosotros:</string>
@@ -79,4 +80,23 @@
     <string name="opciones_de_base_de_datos">Opciones de Base de Datos</string>
     <string name="exportar_base_de_datos">Exportar Base de Datos</string>
     <string name="importar_base_de_datos">Importar Base de Datos</string>
+    <string name="Guardar">Guardar</string>
+    <string name="Guardar_cliente">Guardar cliente</string>
+    <string name="Tiene_seguridad_guardar">¿Tiene la seguridad de guardar esta información?</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="monto_cobrado">Monto cobrado</string>
+    <string name="operacion_realizada_con_exito">Operación realizada con éxito</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="Editar">Editar</string>
+    <string name="Eliminar">Eliminar</string>
+    <string name="salir">Salir</string>
+    <string name="seguro_desea_salir">¿Desea salir de la aplicación?</string>
+    <string name="Exportada_exito">Exportada con éxito</string>
+    <string name="Ubicacion_bd">La Base de Datos fue exportada con éxito y se encuentra en el almacenamiento interno, en la carpeta Downloads, con el nombre: app_database.bd</string>
+    <string name="permiso_denegado">Permiso denegado</string>
+    <string name="debe_otorgar_permisos_galeria">Debe otorgar el permiso para poder exportar la Base de Datos</string>
+    <string name="importado_exito">Importado con éxito</string>
+    <string name="Debe_reiniciar">Debe reiniciar la aplicación para ver los cambios</string>
+    <string name="cup">CUP</string>
+    <string name="monto_personalizado">Monto personalizado</string>
 </resources>

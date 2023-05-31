@@ -1,6 +1,7 @@
 package com.qnecesitas.elretenbombas
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -11,11 +12,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import com.qnecesitas.elretenbombas.adapters.AdapterR_Client
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import com.qnecesitas.elretenbombas.adapters.ClientAdapter
+import com.qnecesitas.elretenbombas.data.AuxiliarEdit
 import com.qnecesitas.elretenbombas.data.ClientViewModelFactory
 import com.qnecesitas.elretenbombas.data.ShowClientViewModel
 import com.qnecesitas.elretenbombas.database.Client
@@ -24,6 +26,7 @@ import com.qnecesitas.elretenbombas.databinding.LiClientBinding
 import com.qnecesitas.elretenbombas.databinding.LiDateYBinding
 import com.qnecesitas.elretenbombas.databinding.LiDateYmBinding
 import com.qnecesitas.elretenbombas.databinding.LiDateYmdBinding
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -42,10 +45,6 @@ class Activity_ShowClient : AppCompatActivity() {
     private var year = 0
     private var month = 0
     private var day = 0
-
-    //Filter
-    private var lastFilterStr = ""
-    private val alClient = ArrayList<Client>()
 
     //ViewModel
     private val viewModel: ShowClientViewModel by viewModels {
@@ -73,6 +72,9 @@ class Activity_ShowClient : AppCompatActivity() {
         year = calendar.get(Calendar.YEAR)
         month = calendar.get(Calendar.MONTH)
         day = calendar.get(Calendar.DAY_OF_MONTH)
+        viewModel.saveLastYear(year)
+        viewModel.saveLastMonth(month)
+        viewModel.saveLastYear(year)
         binding.ivDate.setOnClickListener(View.OnClickListener {
             select_datePick()
         })
@@ -123,41 +125,31 @@ class Activity_ShowClient : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                //adapterrClient.getFilter()?.filter(newText)
-                //TODO
-                lastFilterStr = newText.toString()
+                viewModel.filterByText(newText.toString())
                 return false
             }
 
         })
         binding.ivIconSearch.setOnClickListener(View.OnClickListener {
-            binding.search.visibility = View.VISIBLE
+            binding.clSearch.visibility = View.VISIBLE
             binding.ivIconSearch.visibility = View.GONE
         })
         binding.ivCloseSearch.setOnClickListener(View.OnClickListener {
-            binding.search.visibility = View.GONE
+            binding.clSearch.visibility = View.GONE
             binding.ivIconSearch.visibility = View.VISIBLE
+            binding.search.setQuery("",false)
         })
 
-        //Refresh
-        binding.refresh.setOnRefreshListener {
-            when(dateSelected){
-                "Todo" -> loadRecyclerInfoAll()
-                "Año" -> loadRecyclerInfoYear()
-                "Mes" -> loadRecyclerInfoMonth()
-                "Día" -> loadRecyclerInfoDay()
-            }
-        }
 
+        //Settings
+        binding.ivIconSetting.setOnClickListener{
+            val intent = Intent(this, Activity_Settings::class.java)
+            startActivity(intent)
+        }
 
         //Recycler
         val clientAdapter = ClientAdapter(this@Activity_ShowClient)
         binding.rvClients.adapter = clientAdapter
-        clientAdapter.setCloseClick(object : ClientAdapter.ITouchClose{
-            override fun onClickClose(position: Int) {
-                showAlertCloseSales(position)
-            }
-        })
         clientAdapter.setClick(object : ClientAdapter.ITouchCV{
             override fun onClick(position: Int) {
                 li_client(position)
@@ -165,14 +157,22 @@ class Activity_ShowClient : AppCompatActivity() {
 
         })
 
+        //Btn Add
+        binding.btnAcept.setOnClickListener{
+            val intent = Intent(this, Activity_AddCustomer::class.java)
+            startActivity(intent)
+        }
+
+
+        viewModel.alClientsFilter.observe(this, Observer {
+            clientAdapter.submitList(it)
+        })
 
         //Recycler
-        GlobalScope.launch(Dispatchers.IO) {
-            viewModel.getAllClients()
-            viewModel.alClients.value?.collect {
-                clientAdapter.submitList(it)
-            }
-        }
+        loadRecyclerInfoAll()
+
+
+
 
     }
 
@@ -181,20 +181,32 @@ class Activity_ShowClient : AppCompatActivity() {
 
 
     //LoadRecycler
+    @OptIn(DelicateCoroutinesApi::class)
     fun loadRecyclerInfoAll(){
-
+        GlobalScope.launch(Dispatchers.IO) {
+            viewModel.getAllClients()
+        }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun loadRecyclerInfoDay(){
-
+        GlobalScope.launch(Dispatchers.IO) {
+            viewModel.getAllClientsByDay()
+        }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun loadRecyclerInfoMonth(){
-
+        GlobalScope.launch(Dispatchers.IO) {
+            viewModel.getAllClientsByMonth()
+        }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun loadRecyclerInfoYear(){
-
+        GlobalScope.launch(Dispatchers.IO) {
+            viewModel.getAllClientsByYear()
+        }
     }
 
     /*Close
@@ -211,7 +223,7 @@ class Activity_ShowClient : AppCompatActivity() {
             R.string.Si
         ) { dialog, _ ->
             dialog.dismiss()
-            deleteSaleInternet(alClient[position].c_client, position)
+            deleteSaleInternet(position)
         }
         builder.setNegativeButton(R.string.No,
             DialogInterface.OnClickListener { dialog, _ -> dialog.dismiss() })
@@ -228,18 +240,18 @@ class Activity_ShowClient : AppCompatActivity() {
         val alertDialog = builder.create()
 
         //Init
-        val name = alClient[position].name
-        val CI = alClient[position].c_client
-        val phone = alClient[position].phone
-        val waterBomb = alClient[position].waterBomb
-        val copli = alClient[position].copli
-        val imperente = alClient[position].imperente
-        val price = alClient[position].price
-        val warranty = alClient[position].warranty
-        val descWork = alClient[position].descWork
-        val descClient = alClient[position].descClient
-        val date = getString(R.string.Fecha,alClient[position].day.toString(),
-            alClient[position].month.toString(),alClient[position].year.toString())
+        val name = viewModel.alClientsFilter.value?.get(position)?.name
+        val CI = viewModel.alClientsFilter.value?.get(position)?.c_client
+        val phone = viewModel.alClientsFilter.value?.get(position)?.phone
+        val waterBomb = viewModel.alClientsFilter.value?.get(position)?.waterBomb
+        val copli = viewModel.alClientsFilter.value?.get(position)?.copli
+        val imperente = viewModel.alClientsFilter.value?.get(position)?.imperente
+        val price = viewModel.alClientsFilter.value?.get(position)?.price1
+        val warranty = viewModel.alClientsFilter.value?.get(position)?.warranty
+        val descWork = viewModel.alClientsFilter.value?.get(position)?.descWork
+        val descClient = viewModel.alClientsFilter.value?.get(position)?.descClient
+        val date = getString(R.string.Fecha_fill,viewModel.alClientsFilter.value?.get(position)?.day.toString(),
+            viewModel.alClientsFilter.value?.get(position)?.month.toString(),viewModel.alClientsFilter.value?.get(position)?.year.toString())
 
         //Fill out
         liBinding.tvName.text = name
@@ -258,6 +270,17 @@ class Activity_ShowClient : AppCompatActivity() {
         liBinding.ivClose.setOnClickListener{
             alertDialog.dismiss()
         }
+        liBinding.btnDelete.setOnClickListener{
+            alertDialog.dismiss()
+            showAlertCloseSales(position)
+        }
+        liBinding.btnEdit.setOnClickListener{
+            alertDialog.dismiss()
+            AuxiliarEdit.clientForEdit =
+                viewModel.alClientsFilter.value?.get(position)
+            val intent = Intent(this, Activity_EditClient::class.java)
+            startActivity(intent)
+        }
 
         //Finish
         alertDialog.setCancelable(false)
@@ -266,8 +289,15 @@ class Activity_ShowClient : AppCompatActivity() {
         alertDialog.show()
     }
 
-    private fun deleteSaleInternet(orderCode: Int, position: Int) {
-
+    private fun deleteSaleInternet(position: Int) {
+        viewModel.deleteClient(position)
+        FancyToast.makeText(
+            this,
+            getString(R.string.operacion_realizada_con_exito),
+            FancyToast.LENGTH_SHORT,
+            FancyToast.SUCCESS,
+            false
+        ).show()
     }
 
     /*Date Pickers
@@ -300,6 +330,7 @@ class Activity_ShowClient : AppCompatActivity() {
         liBinding.btnAcept.setOnClickListener{
             alertDialog.dismiss()
             year = liBinding.ilNpAnno.value
+            viewModel.saveLastYear(year)
             binding.tvDate.text = year.toString()
             loadRecyclerInfoYear()
         }
@@ -337,6 +368,8 @@ class Activity_ShowClient : AppCompatActivity() {
             year = liBinding.ilNpAnnos.value
             month = liBinding.ilNpMonth.value+1
             val dateDisplay="${year}/${month}"
+            viewModel.saveLastYear(year)
+            viewModel.saveLastMonth(month)
             binding.tvDate.text = dateDisplay
             loadRecyclerInfoMonth()
         }
@@ -378,6 +411,9 @@ class Activity_ShowClient : AppCompatActivity() {
             day = liBinding.ilNpDay.value
             val dateDisplay="${year}/${month}/${day}"
             binding.tvDate.text = dateDisplay
+            viewModel.saveLastYear(year)
+            viewModel.saveLastMonth(month)
+            viewModel.saveLastDay(day)
             loadRecyclerInfoDay()
         }
 

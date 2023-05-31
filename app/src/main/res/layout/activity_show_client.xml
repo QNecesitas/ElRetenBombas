@@ -27,6 +27,16 @@
 
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivIconSetting"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/baseline_settings_24"
+                android:visibility="visible"
+                app:tint="@color/white"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivIconSearch"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -86,6 +96,7 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:tint="?attr/colorControlNormal"
                 android:id="@+id/iv_filter"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -125,7 +136,8 @@
                 android:src="@drawable/baseline_date_range_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorControlNormal"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -141,26 +153,15 @@
         app:layout_constraintTop_toBottomOf="@+id/cv_filter">
 
 
-        <!--Refresh-->
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refresh"
+        <!--Recycler-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvClients"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <!--Recycler-->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvClients"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <!-- CL Not info -->
         <LinearLayout
@@ -197,4 +198,18 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Add client-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_acept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_person_add_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/agregar_cliente"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

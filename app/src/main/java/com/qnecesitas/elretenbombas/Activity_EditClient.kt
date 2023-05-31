@@ -3,23 +3,28 @@ package com.qnecesitas.elretenbombas
 import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.qnecesitas.elretenbombas.auxiliary.IDCreater
+import com.qnecesitas.elretenbombas.data.AuxiliarEdit
 import com.qnecesitas.elretenbombas.data.ClientViewModelFactory
 import com.qnecesitas.elretenbombas.data.ShowClientViewModel
 import com.qnecesitas.elretenbombas.database.Client
-import com.qnecesitas.elretenbombas.databinding.ActivityAddCustomerBinding
+import com.qnecesitas.elretenbombas.databinding.ActivityEditClientBinding
 import com.qnecesitas.elretenbombas.databinding.LiDateYmdBinding
 import com.shashank.sony.fancytoastlib.FancyToast
 import java.util.Calendar
 
-class Activity_AddCustomer : AppCompatActivity() {
+class Activity_EditClient : AppCompatActivity() {
+
+    private lateinit var binding: ActivityEditClientBinding
 
     private val viewModel: ShowClientViewModel by viewModels {
         ClientViewModelFactory(
@@ -27,12 +32,9 @@ class Activity_AddCustomer : AppCompatActivity() {
         )
     }
 
-    private lateinit var binding: ActivityAddCustomerBinding
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddCustomerBinding.inflate(layoutInflater)
+        binding = ActivityEditClientBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -54,16 +56,26 @@ class Activity_AddCustomer : AppCompatActivity() {
         viewModel.saveLastYear(year)
 
 
-        //Spinner
+        //Spinners
         val alType = arrayListOf("CUP","USD","MLC")
         val stringArrayAdapter =
             ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alType)
         binding.TIETMonto.setAdapter(stringArrayAdapter)
         binding.TIETMontoH.setAdapter(stringArrayAdapter)
 
+
         //Listeners
         binding.TIETDate.setOnClickListener {
             liDateDay()
+        }
+
+        binding.btnAcept.setOnClickListener {
+            if (isEntryValid()) {
+                Log.d("XXXX", "IsEntry")
+                showAlertConfirm()
+            } else {
+                Log.d("XXXX", "IsFalse")
+            }
         }
 
         binding.SWM.setOnCheckedChangeListener { view, isChecked ->
@@ -74,17 +86,30 @@ class Activity_AddCustomer : AppCompatActivity() {
             }
         }
 
-        binding.btnAcept.setOnClickListener {
-            if (isEntryValid()) {
-                Log.d("XXXX","IsEntry")
-                showAlertConfirm()
-            }else{
-                Log.d("XXXX","IsFalse")
-            }
-        }
+        fillInformation()
 
     }
 
+
+    //StartFill
+    private fun fillInformation() {
+        binding.TIETName.setText(AuxiliarEdit.clientForEdit?.name)
+        binding.TIETCi.setText(AuxiliarEdit.clientForEdit?.ci)
+        binding.TIETPhone.setText(AuxiliarEdit.clientForEdit?.phone)
+        binding.TIETWaterBomb.setText(AuxiliarEdit.clientForEdit?.waterBomb)
+        binding.TIETCopli.setText(AuxiliarEdit.clientForEdit?.copli)
+        binding.TIETImperente.setText(AuxiliarEdit.clientForEdit?.imperente)
+        binding.TIETPrecio.setText(AuxiliarEdit.clientForEdit?.price1.toString())
+        binding.TIETMonto.setText(AuxiliarEdit.clientForEdit?.typePrice1.toString())
+        binding.TIETPrecioH.setText(AuxiliarEdit.clientForEdit?.price2.toString())
+        binding.TIETMontoH.setText(AuxiliarEdit.clientForEdit?.typePrice2.toString())
+        binding.TIETWarranty.setText(AuxiliarEdit.clientForEdit?.warranty.toString())
+        val date =
+            "${AuxiliarEdit.clientForEdit?.day}/${AuxiliarEdit.clientForEdit?.month}/${AuxiliarEdit.clientForEdit?.year}"
+        binding.TIETDate.setText(date)
+        binding.TIETDescWork.setText(AuxiliarEdit.clientForEdit?.descWork)
+        binding.TIETDescClient.setText(AuxiliarEdit.clientForEdit?.descClient)
+    }
 
     //Date
     private fun liDateDay() {
@@ -172,29 +197,31 @@ class Activity_AddCustomer : AppCompatActivity() {
             return false
         }
 
-
         return true
     }
 
     //Information
     private fun saveInformation() {
-        viewModel.addNewClientEntry(
-            binding.TIETCi.text.toString(),
-            binding.TIETName.text.toString(),
-            viewModel.day.value ?: 1,
-            viewModel.month.value ?: 1,
-            viewModel.year.value ?: 2023,
-            binding.TIETPhone.text.toString(),
-            binding.TIETWaterBomb.text.toString(),
-            binding.TIETCopli.text.toString(),
-            binding.TIETImperente.text.toString(),
-            binding.TIETPrecio.text.toString().toDouble(),
-            binding.TIETMonto.text.toString(),
-            binding.TIETPrecioH.text.toString().toDouble(),
-            binding.TIETMontoH.text.toString(),
-            binding.TIETWarranty.text.toString().toInt(),
-            binding.TIETDescWork.text.toString(),
-            binding.TIETDescClient.text.toString()
+        viewModel.updateProduct(
+            Client(
+                AuxiliarEdit.clientForEdit?.c_client?: IDCreater.generate(),
+                binding.TIETCi.text.toString(),
+                binding.TIETName.text.toString(),
+                viewModel.day.value ?: 1,
+                viewModel.month.value ?: 1,
+                viewModel.year.value ?: 2023,
+                binding.TIETPhone.text.toString(),
+                binding.TIETWaterBomb.text.toString(),
+                binding.TIETCopli.text.toString(),
+                binding.TIETImperente.text.toString(),
+                binding.TIETPrecio.text.toString().toDouble(),
+                binding.TIETMonto.text.toString(),
+                binding.TIETPrecioH.text.toString().toDouble(),
+                binding.TIETMontoH.text.toString(),
+                binding.TIETWarranty.text.toString().toInt(),
+                binding.TIETDescWork.text.toString(),
+                binding.TIETDescClient.text.toString()
+            )
         )
         FancyToast.makeText(
             this,

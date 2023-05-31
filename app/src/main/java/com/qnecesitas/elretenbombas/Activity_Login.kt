@@ -1,5 +1,6 @@
 package com.qnecesitas.elretenbombas
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -65,5 +66,29 @@ class Activity_Login : AppCompatActivity() {
     }
 
 
+    override fun onBackPressed() {
+        showAlertDialogExit()
+    }
 
+    private fun showAlertDialogExit() {
+        //init alert dialog
+        val builder = AlertDialog.Builder(this)
+        builder.setCancelable(false)
+        builder.setTitle(R.string.salir)
+        builder.setMessage(R.string.seguro_desea_salir)
+        //set listeners for dialog buttons
+        builder.setPositiveButton(R.string.Si) { _, _ ->
+            //finish the activity
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }
+        builder.setNegativeButton(R.string.No) { dialog, _ ->
+            //dialog gone
+            dialog.dismiss()
+        }
+        //create the alert dialog and show it
+        builder.create().show()
+    }
 }

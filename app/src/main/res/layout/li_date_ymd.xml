@@ -121,7 +121,6 @@
 
                 <!--Button Delete-->
                 <Button
-                    style="@style/transparent_button_outlined"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:id="@+id/btn_cancel"

@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(Client::class), version = 1)
+@Database(entities = [Client::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun clientDao(): ClientDao
@@ -17,10 +17,11 @@ abstract class AppDatabase : RoomDatabase() {
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context,
+                    context.applicationContext,
                     AppDatabase::class.java,
                     "app_database"
-                ).createFromAsset("database/el_reten_bombas.db")
+                )
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
 

@@ -30,7 +30,7 @@ class ClientAdapter(private val context: Context) : ListAdapter<Client, ClientAd
 
 
             binding.tvClient.text = name
-            binding.tvDate.text = context.getString(R.string.Fecha,day.toString(),month.toString(),year.toString())
+            binding.tvDate.text = context.getString(R.string.Fecha_fill,day.toString(),month.toString(),year.toString())
 
             binding.ivClose.setOnClickListener{ clickCLose?.onClickClose(position) }
             binding.cvContainer.setOnClickListener{ click?.onClick(position) }

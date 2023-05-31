@@ -6,17 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--Toolbar--> <!--TODO add theme-->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
+            android:theme="@style/ToolbarIcons"
             app:title="@string/agregar_cliente"
             app:titleTextColor="@color/white">
 
@@ -25,9 +27,11 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
+        app:layout_constraintTop_toBottomOf="@id/AppBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,55 +41,57 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="69sp"
-                android:layout_marginStart="15sp">
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="15dp">
 
                 <ImageView
-                    android:layout_width="60sp"
-                    android:layout_height="60sp"
+                   android:layout_margin="12dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/clientimage"
                     android:src="@drawable/accountcustomer"
-                    android:translationZ="8dp">
+                    android:translationZ="8dp"
+                    android:importantForAccessibility="no"
+                    app:tint="?attr/colorControlNormal"/>
 
-
-                </ImageView>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/TIL_name"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="12sp">
+                    android:layout_marginEnd="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="300sp"
+                        android:id="@+id/TIET_name"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/nombre"
                         android:inputType="textPersonName"
-                        android:gravity="center"
                         android:maxLength="100">
 
                     </com.google.android.material.textfield.TextInputEditText>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-
-
-
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:id="@+id/TIL_ci"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginStart="15sp">
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="40dp">
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="250sp"
+                    android:id="@+id/TIET_ci"
+                    android:layout_width="wrap_content"
+                    android:minWidth="400dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/ci"
                     android:inputType="number"
-                    android:gravity="center"
                     android:maxLength="11">
 
                 </com.google.android.material.textfield.TextInputEditText>
@@ -93,149 +99,292 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:id="@+id/TIL_phone"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginStart="15sp">
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="15dp">
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="250sp"
+                    android:id="@+id/TIET_phone"
+                    android:layout_width="wrap_content"
+                    android:minWidth="250dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/telefono"
                     android:inputType="phone"
-                    android:gravity="center"
-                    android:maxLength="8">
-
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginStart="15sp">
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="300sp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/tipo_de_bomba"
-                    android:inputType="text"
-                    android:gravity="center"
-                    android:maxLength="100">
-
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginStart="15sp">
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="300sp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/medida_del_copli"
-                    android:inputType="text"
-                    android:gravity="center"
-                    android:maxLength="100">
-
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginStart="15sp">
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="340sp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/medida_del_imperente"
-                    android:inputType="text"
-                    android:gravity="center"
-                    android:maxLength="100">
-
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginStart="15sp">
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="200sp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/garantia"
-                    android:inputType="number"
-                    android:gravity="center"
                     android:maxLength="10">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="15sp"
-                android:layout_marginTop="10sp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fecha:">
-
-                </TextView>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="día/mes/año"
-                    android:layout_marginStart="10sp">
-
-                </TextView>
-            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:id="@+id/TIL_waterBomb"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginStart="15sp"
-                android:layout_marginEnd="15sp">
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="15dp">
 
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TIET_waterBomb"
+                    android:layout_width="wrap_content"
+                    android:minWidth="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/tipo_de_bomba"
+                    android:inputType="text"
+                    android:maxLength="100">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TIL_copli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="15dp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TIET_copli"
+                    android:layout_width="wrap_content"
+                    android:minWidth="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/medida_del_copli"
+                    android:inputType="text"
+                    android:maxLength="100">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TIL_imperente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="15dp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TIET_imperente"
+                    android:layout_width="wrap_content"
+                    android:minWidth="280dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/medida_del_imperente"
+                    android:inputType="text"
+                    android:maxLength="100">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:layout_marginTop="12dp"
+                android:id="@+id/SWM"
+                android:text="@string/monto_personalizado"
+                android:layoutDirection="rtl"
+                android:layout_marginStart="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:thumbTint="@color/md_theme_dark_secondary" />
+
+            <LinearLayout
+                android:id="@+id/llMonto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/TIL_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="12dp">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/TIET_precio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/monto_cobrado"
+                        android:inputType="numberDecimal"
+                        android:maxLength="10"
+                        android:minWidth="200dp"
+                        android:text="0" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/TILSelectMonto"
+                    style="@style/CustomBorderTIl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="15dp">
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/TIETMonto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/cup"
+                        android:maxLength="50" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llMontoH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/TIL_priceH"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="12dp">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/TIET_precioH"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/monto_cobrado"
+                        android:inputType="numberDecimal"
+                        android:maxLength="10"
+                        android:minWidth="200dp"
+                        android:text="0" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/TILSelectMontoH"
+                    style="@style/CustomBorderTIl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="15dp">
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/TIETMontoH"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/cup"
+                        android:maxLength="50" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TIL_warranty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="15dp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TIET_warranty"
+                    android:layout_width="wrap_content"
+                    android:minWidth="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/garantia"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:text="0">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/CustomBorderTIl"
+                android:id="@+id/TIL_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp">
+
+
+                <AutoCompleteTextView
+                    android:id="@+id/TIET_date"
+                    android:layout_width="wrap_content"
+                    android:minWidth="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fecha"
+                    android:maxLength="50"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TIL_descWork"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TIET_descWork"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/descripción"
+                    android:hint="@string/descripcion_work"
                     android:inputType="text"
-                    android:gravity="center"
                     android:maxLength="250">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
 
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TIL_descClient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TIET_descClient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/descripcion_client"
+                    android:inputType="text"
+                    android:maxLength="250">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/btn_acept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="Guardar"
+                android:text="@string/Guardar"
                 app:icon="@drawable/baseline_save_24"
-                android:layout_margin="12sp">
+                android:layout_margin="12dp"
+                android:textColor="?attr/colorControlNormal"
+                app:iconTint="?attr/colorControlNormal">
 
             </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
 
@@ -250,4 +399,3 @@
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

@@ -34,7 +34,7 @@ class AdapterR_Client(val alClient: ArrayList<Client>, private val context: Cont
             val anio = modelClient.year.toString()
 
             binding.tvClientS.text = nombre
-            binding.tvDate.text = context.getString(R.string.Fecha,dia,mes,anio)
+            binding.tvDate.text = context.getString(R.string.Fecha_fill,dia,mes,anio)
 
 
             binding.ivClose.setOnClickListener{ clickCLose?.onClickClose(position) }
