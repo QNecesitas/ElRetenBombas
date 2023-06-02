@@ -99,4 +99,7 @@
     <string name="Debe_reiniciar">Debe reiniciar la aplicación para ver los cambios</string>
     <string name="cup">CUP</string>
     <string name="monto_personalizado">Monto personalizado</string>
+    <string name="pago">Pago</string>
+    <string name="precio_aux">Precio auxiliar:</string>
+    <string name="Editar_client">Editar cliente</string>
 </resources>

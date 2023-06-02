@@ -247,6 +247,9 @@ class Activity_ShowClient : AppCompatActivity() {
         val copli = viewModel.alClientsFilter.value?.get(position)?.copli
         val imperente = viewModel.alClientsFilter.value?.get(position)?.imperente
         val price = viewModel.alClientsFilter.value?.get(position)?.price1
+        val Tprice = viewModel.alClientsFilter.value?.get(position)?.typePrice1
+        val price2 = viewModel.alClientsFilter.value?.get(position)?.price2
+        val Tprice2 = viewModel.alClientsFilter.value?.get(position)?.typePrice2
         val warranty = viewModel.alClientsFilter.value?.get(position)?.warranty
         val descWork = viewModel.alClientsFilter.value?.get(position)?.descWork
         val descClient = viewModel.alClientsFilter.value?.get(position)?.descClient
@@ -261,10 +264,17 @@ class Activity_ShowClient : AppCompatActivity() {
         liBinding.tvCopli.text = copli
         liBinding.tvImp.text = imperente
         liBinding.tvPrice.text = price.toString()
+        liBinding.typePrice.text = Tprice
+        liBinding.tvPriceH.text = price2.toString()
+        liBinding.typePriceH.text = Tprice2
         liBinding.tvDate.text = date
         liBinding.tvGarantia.text = warranty.toString()
         liBinding.tvDescCli.text = descClient
         liBinding.tvDesc.text = descWork
+
+        if (price2?.toInt()!! > 0){
+            liBinding.llTypePrice.visibility = View.VISIBLE
+        }
 
         //Listeners
         liBinding.ivClose.setOnClickListener{

@@ -11,21 +11,23 @@ import android.os.Bundle
 import android.security.identity.PersonalizationData
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.documentfile.provider.DocumentFile
 import com.qnecesitas.elretenbombas.auxiliary.Constants
 import com.qnecesitas.elretenbombas.auxiliary.Permissions
 import com.qnecesitas.elretenbombas.data.ClientViewModelFactory
 import com.qnecesitas.elretenbombas.data.SettingsViewModel
-import com.qnecesitas.elretenbombas.data.SettingsViewModelFactory
 import com.qnecesitas.elretenbombas.data.ShowClientViewModel
 import com.qnecesitas.elretenbombas.databinding.ActivitySettingsBinding
 import com.shashank.sony.fancytoastlib.FancyToast
+import java.io.File
 
 class Activity_Settings : AppCompatActivity() {
 
+    private val REQUEST_CODE_CREATE_FILE: Int = 1
     private lateinit var binding: ActivitySettingsBinding
     //ViewModel
     private val viewModel: SettingsViewModel by viewModels {
-        SettingsViewModelFactory(
+        SettingsViewModel.SettingsViewModelFactory(
             (application as ElRetenApplication).database.clientDao()
         )
     }
@@ -139,12 +141,10 @@ class Activity_Settings : AppCompatActivity() {
     }
 
     private fun exportDb(){
-        if(Permissions.siHayPermisoDeAlmacenamiento(this)) {
-            viewModel.exportBD(this)
-            showAlertDialogPathBd()
-        }else{
-            Permissions.pedirPermisoDeAlmacenamiento(this,viewModel.CODE_PERMISSION_STORAGE)
-        }
+        var intent: Intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
+        intent.setType("text/plain")
+        intent.putExtra(Intent.EXTRA_TITLE,"App_DataBase.DB")
+        startActivityForResult(intent,REQUEST_CODE_CREATE_FILE)
     }
 
     private fun importDB(){
@@ -217,6 +217,20 @@ class Activity_Settings : AppCompatActivity() {
         }
         //create the alert dialog and show it
         builder.create().show()
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == REQUEST_CODE_CREATE_FILE && resultCode == RESULT_OK){
+            if(data!=null && data.data!=null){
+                val uri = data.data
+                val documentFile = DocumentFile.fromSingleUri(this, uri!!)
+                val file = File(documentFile?.uri!!.path)
+                viewModel.exportBD(this,file)
+            }
+        }
     }
 
 }

@@ -27,13 +27,11 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="@drawable/circular_background"
-            android:padding="12dp"
-            android:src="@drawable/baseline_home_repair_service_24"
+            android:src="@drawable/ic_launcher_round"
             android:translationZ="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="?attr/colorPrimary"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
         <!--ET Password-->

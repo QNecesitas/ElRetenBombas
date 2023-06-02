@@ -14,14 +14,12 @@
         android:layout_height="120dp"
         android:background="@drawable/redondend_background_outline"
         android:importantForAccessibility="no"
-        android:padding="8dp"
-        android:src="@drawable/baseline_home_repair_service_24"
+        android:src="@drawable/ic_launcher"
         app:layout_constraintBottom_toTopOf="@id/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:tint="@color/white" />
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/text"

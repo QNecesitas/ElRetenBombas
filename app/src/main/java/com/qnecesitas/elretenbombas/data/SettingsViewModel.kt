@@ -2,6 +2,7 @@ package com.qnecesitas.elretenbombas.data
 
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
@@ -18,30 +19,37 @@ import com.qnecesitas.elretenbombas.auxiliary.IDCreater
 import com.qnecesitas.elretenbombas.database.AppDatabase
 import com.qnecesitas.elretenbombas.database.Client
 import com.qnecesitas.elretenbombas.database.ClientDao
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.toCollection
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.lang.Exception
+import java.lang.StringBuilder
 import java.time.Year
 
 class SettingsViewModel(private val clientDao: ClientDao) : ViewModel() {
 
     val CODE_PERMISSION_STORAGE = 111
 
-    fun exportBD(context: Context) {
+    fun exportBD(context: Context, file: File?) {
         val database = AppDatabase.getDatabase(context)
 
 
         val filename = "app_database.db"
         val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        val file = File(downloadsDir, filename)
+        //val file = File(downloadsDir, filename)
         val currentDbPath = context.getDatabasePath(database.openHelper.databaseName)
 
         try {
             database.close()
             val fileOutputStream = FileOutputStream(file)
-            currentDbPath.copyTo(file,overwrite = true)
+            currentDbPath.copyTo(file!!,overwrite = true)
             fileOutputStream.close()
 
         }catch (e: Exception){
@@ -69,7 +77,19 @@ class SettingsViewModel(private val clientDao: ClientDao) : ViewModel() {
         }
     }
 
-}
+  /*  fun getBDDate(context: Context){
+        var data: Flow<List<Client>> = AppDatabase.getDatabase(context).clientDao().fetchClients()
+
+        var contentBuilder: StringBuilder
+        for (item: Client in data){
+            contentBuilder.append(item.toString())
+            contentBuilder.append("\n")
+        }
+        var content: String = contentBuilder.toString()
+
+
+
+}*/
 
 class SettingsViewModelFactory(
     private val clientDao: ClientDao
@@ -83,3 +103,4 @@ class SettingsViewModelFactory(
         throw IllegalArgumentException("Unknown viewModel class")
     }
 }
+    }

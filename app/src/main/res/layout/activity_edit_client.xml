@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
                 android:theme="@style/ToolbarIcons"
-                app:title="@string/agregar_cliente"
+                app:title="@string/Editar_client"
                 app:titleTextColor="@color/white">
 
             </androidx.appcompat.widget.Toolbar>

@@ -9,9 +9,9 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -59,13 +59,13 @@
 
                         <!--tv Name-->
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/tvName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:text="@string/nombre"
                             android:textSize="@dimen/textSize_h"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/ivUser" />
@@ -73,7 +73,6 @@
 
                         <!--tv CIs-->
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/tvCIs"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -81,6 +80,7 @@
                             android:layout_marginTop="20dp"
                             android:text="@string/ciS"
                             android:textSize="@dimen/textSize_m"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tvName" />
 
@@ -109,13 +109,13 @@
 
                         <!--tv phoneS-->
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/tvPhoneS"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/tel_fono"
                             android:textSize="@dimen/textSize_m"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@id/tvCIs"
                             app:layout_constraintTop_toBottomOf="@id/vCi" />
 
@@ -145,26 +145,26 @@
 
                         <!--tv type bomb waterS-->
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/tvTypeS"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/tipo_de_bomba_de_agua"
                             android:textSize="@dimen/textSize_m"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@id/tvCIs"
                             app:layout_constraintTop_toBottomOf="@id/vPhone" />
 
                         <!--tv type bomb water-->
                         <TextView
-                            android:layout_marginStart="20dp"
-                            app:layout_constraintHorizontal_bias="0"
                             android:id="@+id/tvType"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
                             android:text="@string/bomba"
                             android:textSize="@dimen/textSize_m"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tvTypeS" />
 
@@ -184,13 +184,13 @@
 
                         <!--tv size copliS-->
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/tvCopliS"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/medida_del_copli"
                             android:textSize="@dimen/textSize_m"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@id/tvCIs"
                             app:layout_constraintTop_toBottomOf="@id/vType" />
 
@@ -221,13 +221,13 @@
 
                         <!--tv size imperenteS-->
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/tvImpS"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/medida_del_imperente"
                             android:textSize="@dimen/textSize_m"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@id/tvCIs"
                             app:layout_constraintTop_toBottomOf="@id/vCopli" />
 
@@ -258,13 +258,13 @@
 
                         <!--tv price costS-->
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/tvPriceS"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/precio_de_c_bro"
                             android:textSize="@dimen/textSize_m"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@id/tvCIs"
                             app:layout_constraintTop_toBottomOf="@id/vImp" />
 
@@ -280,6 +280,20 @@
                             app:layout_constraintTop_toTopOf="@id/tvPriceS" />
 
 
+                        <!--tv price cost-->
+                        <TextView
+                            android:id="@+id/typePrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="@string/pago"
+                            android:textSize="@dimen/textSize_m"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/tvPrice"
+                            app:layout_constraintStart_toEndOf="@id/tvPrice"
+                            app:layout_constraintTop_toTopOf="@id/tvPrice" />
+
+
                         <View
                             android:id="@+id/vPrice"
                             android:layout_width="0dp"
@@ -292,18 +306,88 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
+                        <!--ll price cost Hidden-->
+                        <LinearLayout
+                            android:id="@+id/llTypePrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/tvCIs"
+                            app:layout_constraintTop_toBottomOf="@id/vPrice">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <!--tv price costSH-->
+                                <TextView
+                                    android:id="@+id/tvPriceSH"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="@string/precio_aux"
+                                    android:textSize="@dimen/textSize_m"
+                                    android:textStyle="bold"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <!--tv price costH-->
+                                <TextView
+                                    android:id="@+id/tvPriceH"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:text="@string/precio"
+                                    android:textSize="@dimen/textSize_m"
+                                    app:layout_constraintStart_toEndOf="@id/tvPriceSH"
+                                    app:layout_constraintTop_toTopOf="@id/tvPriceSH" />
+
+
+                                <!--tv price costH-->
+                                <TextView
+                                    android:id="@+id/typePriceH"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:text="@string/pago"
+                                    android:textSize="@dimen/textSize_m"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="@id/tvPriceH"
+                                    app:layout_constraintStart_toEndOf="@id/tvPriceH"
+                                    app:layout_constraintTop_toTopOf="@id/tvPriceH" />
+
+
+                                <View
+                                    android:id="@+id/vPriceH"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0.5dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="30dp"
+                                    android:background="@color/black"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/tvPriceH" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        </LinearLayout>
+
 
                         <!--tv DateS-->
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/tvDateS"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/fechaS"
                             android:textSize="@dimen/textSize_m"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@id/tvCIs"
-                            app:layout_constraintTop_toBottomOf="@id/vPrice" />
+                            app:layout_constraintTop_toBottomOf="@id/llTypePrice" />
 
                         <!--tv Date-->
                         <TextView
@@ -332,13 +416,13 @@
 
                         <!--tv garantiaS-->
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/tvGarantiaS"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/garant_a"
                             android:textSize="@dimen/textSize_m"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@id/tvCIs"
                             app:layout_constraintTop_toBottomOf="@id/vDate" />
 
@@ -369,25 +453,25 @@
 
                         <!--tv descS-->
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/tvDescS"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/descripci_n_del_trabajo"
                             android:textSize="@dimen/textSize_m"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@id/tvCIs"
                             app:layout_constraintTop_toBottomOf="@id/vGarantia" />
 
                         <!--tv desc-->
                         <TextView
-                            app:layout_constraintHorizontal_bias="0"
-                            app:layout_constraintEnd_toEndOf="parent"
                             android:id="@+id/tvDesc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/descripci_n_del_trabajo"
                             android:textSize="@dimen/textSize_m"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0"
                             app:layout_constraintStart_toStartOf="@id/tvDescS"
                             app:layout_constraintTop_toBottomOf="@id/tvDescS" />
 
@@ -407,25 +491,25 @@
 
                         <!--tv desc clientS-->
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/tvDescCliS"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/descripci_n_cliente"
                             android:textSize="@dimen/textSize_m"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@id/tvCIs"
                             app:layout_constraintTop_toBottomOf="@id/vDesc" />
 
                         <!--tv desc client-->
                         <TextView
-                            app:layout_constraintHorizontal_bias="0"
-                            app:layout_constraintEnd_toEndOf="parent"
                             android:id="@+id/tvDescCli"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/descripci_n_cliente"
                             android:textSize="@dimen/textSize_m"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0"
                             app:layout_constraintStart_toStartOf="@id/tvDescCliS"
                             app:layout_constraintTop_toBottomOf="@id/tvDescCliS" />
 
@@ -448,16 +532,16 @@
 
                 <!--cv Options-->
                 <androidx.cardview.widget.CardView
-                    app:layout_constraintTop_toBottomOf="@id/cv_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="20dp"
                     android:translationZ="@dimen/standard_traslationZ"
                     app:cardCornerRadius="@dimen/standard_card_corner_radius"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cv_content">
 
                     <com.google.android.material.button.MaterialButtonToggleGroup
                         android:layout_width="wrap_content"

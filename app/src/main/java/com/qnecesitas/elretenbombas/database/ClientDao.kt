@@ -11,16 +11,16 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ClientDao {
 
-    @Query("SELECT * FROM client ORDER BY name ASC")
+    @Query("SELECT * FROM client ORDER BY year,month,day")
     fun fetchClients(): Flow<List<Client>>
 
-    @Query("SELECT * FROM client WHERE day=:day AND month=:month AND year=:year ORDER BY name ASC")
+    @Query("SELECT * FROM client WHERE day=:day AND month=:month AND year=:year ORDER BY year,month,day")
     fun fetchClientsDay(day: Int, month: Int, year: Int): Flow<List<Client>>
 
-    @Query("SELECT * FROM client WHERE month=:month AND year=:year ORDER BY name ASC")
+    @Query("SELECT * FROM client WHERE month=:month AND year=:year ORDER BY year,month,day")
     fun fetchClientsMonth(month: Int, year: Int): Flow<List<Client>>
 
-    @Query("SELECT * FROM client WHERE year=:year ORDER BY name ASC")
+    @Query("SELECT * FROM client WHERE year=:year ORDER BY year,month,day")
     fun fetchClientsYear(year: Int): Flow<List<Client>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

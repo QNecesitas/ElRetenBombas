@@ -1,6 +1,7 @@
 package com.qnecesitas.elretenbombas
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -91,6 +92,8 @@ class Activity_EditClient : AppCompatActivity() {
     }
 
 
+
+
     //StartFill
     private fun fillInformation() {
         binding.TIETName.setText(AuxiliarEdit.clientForEdit?.name)
@@ -100,9 +103,7 @@ class Activity_EditClient : AppCompatActivity() {
         binding.TIETCopli.setText(AuxiliarEdit.clientForEdit?.copli)
         binding.TIETImperente.setText(AuxiliarEdit.clientForEdit?.imperente)
         binding.TIETPrecio.setText(AuxiliarEdit.clientForEdit?.price1.toString())
-        binding.TIETMonto.setText(AuxiliarEdit.clientForEdit?.typePrice1.toString())
         binding.TIETPrecioH.setText(AuxiliarEdit.clientForEdit?.price2.toString())
-        binding.TIETMontoH.setText(AuxiliarEdit.clientForEdit?.typePrice2.toString())
         binding.TIETWarranty.setText(AuxiliarEdit.clientForEdit?.warranty.toString())
         val date =
             "${AuxiliarEdit.clientForEdit?.day}/${AuxiliarEdit.clientForEdit?.month}/${AuxiliarEdit.clientForEdit?.year}"
