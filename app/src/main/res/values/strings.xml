@@ -24,7 +24,7 @@
     <string name="tel_fono">Teléfono:</string>
     <string name="tipo_de_bomba_de_agua">Tipo de bomba de agua:</string>
     <string name="medida_del_copliS">Medida del coplin:</string>
-    <string name="medida_del_imperenteS">Medida del imperente:</string>
+    <string name="medida_del_imperenteS">Medida del impelente:</string>
     <string name="precio_de_c_bro">Precio de cobro:</string>
     <string name="descripci_n_del_trabajo">Descripción del trabajo:</string>
     <string name="descripci_n_cliente">Descripción cliente:</string>
@@ -50,7 +50,7 @@
     <string name="telefono">Teléfono</string>
     <string name="tipo_de_bomba">Tipo de bomba</string>
     <string name="medida_del_copli">Medida del coplin</string>
-    <string name="medida_del_imperente">Medida del imperente</string>
+    <string name="medida_del_imperente">Medida del impelente</string>
     <string name="garantia">Garantía</string>
     <string name="descripcion_client">Descripción del cliente</string>
     <string name="descripcion_work">Descripción del trabajo</string>
@@ -96,10 +96,14 @@
     <string name="permiso_denegado">Permiso denegado</string>
     <string name="debe_otorgar_permisos_galeria">Debe otorgar el permiso para poder exportar la Base de Datos</string>
     <string name="importado_exito">Importado con éxito</string>
-    <string name="Debe_reiniciar">Debe reiniciar la aplicación para ver los cambios</string>
+    <string name="Debe_reiniciar">Debe cerrar completamente la aplicación y luego abrirla para ver los cambios y evitar errores</string>
     <string name="cup">CUP</string>
     <string name="monto_personalizado">Monto personalizado</string>
     <string name="pago">Pago</string>
     <string name="precio_aux">Precio auxiliar:</string>
     <string name="Editar_client">Editar cliente</string>
+    <string name="bd_exportada_exito">Base de datos exportada con éxito</string>
+    <string name="bd_exportada_error">Error al exportar la base de datos</string>
+    <string name="bd_inportada_exito">Base de datos importada con éxito</string>
+    <string name="bd_inportada_error">Error al inportar la base de datos</string>
 </resources>

@@ -74,7 +74,7 @@ class Activity_ShowClient : AppCompatActivity() {
         day = calendar.get(Calendar.DAY_OF_MONTH)
         viewModel.saveLastYear(year)
         viewModel.saveLastMonth(month)
-        viewModel.saveLastYear(year)
+        viewModel.saveLastDay(day)
         binding.ivDate.setOnClickListener(View.OnClickListener {
             select_datePick()
         })
@@ -241,7 +241,7 @@ class Activity_ShowClient : AppCompatActivity() {
 
         //Init
         val name = viewModel.alClientsFilter.value?.get(position)?.name
-        val CI = viewModel.alClientsFilter.value?.get(position)?.c_client
+        val CI = viewModel.alClientsFilter.value?.get(position)?.ci
         val phone = viewModel.alClientsFilter.value?.get(position)?.phone
         val waterBomb = viewModel.alClientsFilter.value?.get(position)?.waterBomb
         val copli = viewModel.alClientsFilter.value?.get(position)?.copli
@@ -332,6 +332,7 @@ class Activity_ShowClient : AppCompatActivity() {
         //Declare
         liBinding.ilNpAnno.maxValue = 2050
         liBinding.ilNpAnno.minValue = 2020
+        liBinding.ilNpAnno.value = viewModel.year.value?:2020
 
         //Listeners
         liBinding.btnCancel.setOnClickListener{
@@ -364,8 +365,10 @@ class Activity_ShowClient : AppCompatActivity() {
         //Declare
         liBinding.ilNpAnnos.maxValue = 2050
         liBinding.ilNpAnnos.minValue = 2020
+        liBinding.ilNpAnnos.value = viewModel.year.value?:2020
         liBinding.ilNpMonth.maxValue = 11
         liBinding.ilNpMonth.minValue = 0
+        liBinding.ilNpMonth.value = viewModel.month.value?:1
         val months = arrayOf("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre")
         liBinding.ilNpMonth.displayedValues = months
 
@@ -403,10 +406,13 @@ class Activity_ShowClient : AppCompatActivity() {
         //Declare
         liBinding.ilNpAnnos.maxValue = 2050
         liBinding.ilNpAnnos.minValue = 2020
+        liBinding.ilNpAnnos.value = viewModel.year.value?:2023
         liBinding.ilNpMonth.maxValue = 11
         liBinding.ilNpMonth.minValue = 0
+        liBinding.ilNpMonth.value = viewModel.month.value?:1
         liBinding.ilNpDay.minValue = 1
         liBinding.ilNpDay.maxValue = 31
+        liBinding.ilNpDay.value = viewModel.day.value?:1
         val months = arrayOf("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre")
         liBinding.ilNpMonth.displayedValues = months
 

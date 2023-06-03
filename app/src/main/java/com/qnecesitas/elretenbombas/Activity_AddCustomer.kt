@@ -76,10 +76,7 @@ class Activity_AddCustomer : AppCompatActivity() {
 
         binding.btnAcept.setOnClickListener {
             if (isEntryValid()) {
-                Log.d("XXXX","IsEntry")
                 showAlertConfirm()
-            }else{
-                Log.d("XXXX","IsFalse")
             }
         }
 

@@ -1,29 +1,26 @@
 package com.qnecesitas.elretenbombas
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.media.audiofx.Equalizer.Settings
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.security.identity.PersonalizationData
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.documentfile.provider.DocumentFile
 import com.qnecesitas.elretenbombas.auxiliary.Constants
-import com.qnecesitas.elretenbombas.auxiliary.Permissions
-import com.qnecesitas.elretenbombas.data.ClientViewModelFactory
 import com.qnecesitas.elretenbombas.data.SettingsViewModel
-import com.qnecesitas.elretenbombas.data.ShowClientViewModel
 import com.qnecesitas.elretenbombas.databinding.ActivitySettingsBinding
 import com.shashank.sony.fancytoastlib.FancyToast
 import java.io.File
+import java.io.FileInputStream
 
 class Activity_Settings : AppCompatActivity() {
 
-    private val REQUEST_CODE_CREATE_FILE: Int = 1
     private lateinit var binding: ActivitySettingsBinding
     //ViewModel
     private val viewModel: SettingsViewModel by viewModels {
@@ -39,10 +36,16 @@ class Activity_Settings : AppCompatActivity() {
     private lateinit var sharedEditor: SharedPreferences.Editor
 
     //Import
-    val import = registerForActivityResult(ActivityResultContracts.GetContent()){
+    private val import = registerForActivityResult(ActivityResultContracts.GetContent()){
             uri: Uri? ->
         uri?.let { viewModel.importBD(this@Activity_Settings,it) }
     }
+
+    //ActivityResultExport
+    private lateinit var activityResultExport: ActivityResultLauncher<Intent>
+
+    //ActivityResultImport
+    private lateinit var activityResultImport: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +75,55 @@ class Activity_Settings : AppCompatActivity() {
             importDB()
         }
 
+
+        //ActivityResultExport
+        activityResultExport = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                if (data != null && data.data != null) {
+                    val uri = data.data
+                    val outputStream = contentResolver.openOutputStream(uri!!)
+                    viewModel.exportBD(this, outputStream)
+                    FancyToast.makeText(
+                        this,
+                        getString(R.string.bd_exportada_exito),
+                        FancyToast.LENGTH_LONG,
+                        FancyToast.SUCCESS,
+                        false
+                    ).show()
+                } else {
+                    FancyToast.makeText(
+                        this,
+                        getString(R.string.bd_exportada_error),
+                        FancyToast.LENGTH_LONG,
+                        FancyToast.ERROR,
+                        false
+                    ).show()
+                }
+            }
+        }
+
+        //ActivityResultImport
+        activityResultImport =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if(result.resultCode == Activity.RESULT_OK){
+                    val data: Intent? = result.data
+                    if(data!=null && data.data!=null){
+                        val uri = data.data
+
+                        uri?.let { viewModel.importBD(this, it) }
+                        showAlertDialogExit()
+                    }else{
+                        FancyToast.makeText(
+                            this,
+                            getString(R.string.bd_inportada_error),
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,
+                            false
+                        ).show()
+                    }
+                }
+            }
 
     }
 
@@ -141,65 +193,18 @@ class Activity_Settings : AppCompatActivity() {
     }
 
     private fun exportDb(){
-        var intent: Intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
-        intent.setType("text/plain")
-        intent.putExtra(Intent.EXTRA_TITLE,"App_DataBase.DB")
-        startActivityForResult(intent,REQUEST_CODE_CREATE_FILE)
+        val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
+        intent.putExtra(Intent.EXTRA_TITLE,"App_DataBase.db")
+        intent.type = "application/x-sqlite3"
+        activityResultExport.launch(intent)
     }
 
     private fun importDB(){
-        if(Permissions.siHayPermisoDeAlmacenamiento(this)) {
-
-            import.launch("*/*")
-            showAlertDialogExit()
-
-        }else{
-            Permissions.pedirPermisoDeAlmacenamiento(this,viewModel.CODE_PERMISSION_STORAGE)
-        }
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.type = "*/*"
+        activityResultImport.launch(intent)
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == viewModel.CODE_PERMISSION_STORAGE) {
-            if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                exportDb()
-            } else {
-                showAlertDialogPermissionDenied()
-            }
-        }
-    }
-
-    private fun showAlertDialogPathBd() {
-        //init alert dialog
-        val builder = AlertDialog.Builder(this)
-        builder.setCancelable(false)
-        builder.setTitle(R.string.Exportada_exito)
-        builder.setMessage(R.string.Ubicacion_bd)
-        //set listeners for dialog buttons
-        builder.setPositiveButton(R.string.Aceptar) { dialog, _ ->
-            //finish the activity
-            dialog.dismiss()
-        }
-        //create the alert dialog and show it
-        builder.create().show()
-    }
-    fun showAlertDialogPermissionDenied() {
-        //init alert dialog
-        val builder = android.app.AlertDialog.Builder(this)
-        builder.setCancelable(true)
-        builder.setTitle(R.string.permiso_denegado)
-        builder.setMessage(R.string.debe_otorgar_permisos_galeria)
-        //set listeners for dialog buttons
-        builder.setPositiveButton(
-            R.string.Aceptar
-        ) { dialog, _ -> dialog.dismiss() }
-        //create the alert dialog and show it
-        builder.create().show()
-    }
 
     private fun showAlertDialogExit() {
         //init alert dialog
@@ -219,18 +224,5 @@ class Activity_Settings : AppCompatActivity() {
         builder.create().show()
     }
 
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == REQUEST_CODE_CREATE_FILE && resultCode == RESULT_OK){
-            if(data!=null && data.data!=null){
-                val uri = data.data
-                val documentFile = DocumentFile.fromSingleUri(this, uri!!)
-                val file = File(documentFile?.uri!!.path)
-                viewModel.exportBD(this,file)
-            }
-        }
-    }
 
 }

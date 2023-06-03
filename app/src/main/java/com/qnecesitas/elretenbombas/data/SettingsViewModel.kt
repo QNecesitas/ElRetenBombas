@@ -27,35 +27,33 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.io.File
+import java.io.FileDescriptor
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.io.OutputStream
 import java.lang.Exception
 import java.lang.StringBuilder
 import java.time.Year
 
 class SettingsViewModel(private val clientDao: ClientDao) : ViewModel() {
 
-    val CODE_PERMISSION_STORAGE = 111
-
-    fun exportBD(context: Context, file: File?) {
+    fun exportBD(context: Context, outputStream: OutputStream?) {
         val database = AppDatabase.getDatabase(context)
-
-
-        val filename = "app_database.db"
-        val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        //val file = File(downloadsDir, filename)
         val currentDbPath = context.getDatabasePath(database.openHelper.databaseName)
 
         try {
             database.close()
-            val fileOutputStream = FileOutputStream(file)
-            currentDbPath.copyTo(file!!,overwrite = true)
-            fileOutputStream.close()
-
-        }catch (e: Exception){
-            Log.e("Error",e.toString())
+            outputStream?.let { output ->
+                val inputChannel = FileInputStream(currentDbPath).channel
+                val outputChannel = (output as FileOutputStream).channel
+                inputChannel.transferTo(0, inputChannel.size(), outputChannel)
+                inputChannel.close()
+                outputChannel.close()
+            }
+            outputStream?.close()
+        } catch (e: Exception) {
+            Log.e("Error", e.toString())
         }
-
     }
 
     fun importBD(context: Context, uri: Uri){
