@@ -30,7 +30,7 @@ class Activity_AddCustomer : AppCompatActivity() {
     private lateinit var binding: ActivityAddCustomerBinding
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)  {
         super.onCreate(savedInstanceState)
         binding = ActivityAddCustomerBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -95,10 +95,14 @@ class Activity_AddCustomer : AppCompatActivity() {
         //Declare
         liBinding.ilNpAnnos.maxValue = 2050
         liBinding.ilNpAnnos.minValue = 2020
+        liBinding.ilNpAnnos.value = viewModel.year.value?:2020
         liBinding.ilNpMonth.maxValue = 11
         liBinding.ilNpMonth.minValue = 0
+        val month = viewModel.month.value?:2
+        liBinding.ilNpMonth.value = month-1
         liBinding.ilNpDay.minValue = 1
         liBinding.ilNpDay.maxValue = 31
+        liBinding.ilNpDay.value = viewModel.day.value?:1
         val months = arrayOf(
             "Enero",
             "Febrero",
