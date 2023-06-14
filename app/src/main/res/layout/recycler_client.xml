@@ -61,6 +61,50 @@
                 app:layout_constraintTop_toTopOf="@id/tvClientS" />
 
 
+            <!--tv Number phone static-->
+            <TextView
+                android:id="@+id/tvNumberS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/numeroS"
+                android:textSize="@dimen/textSize_m"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/tvClientS"
+                app:layout_constraintTop_toBottomOf="@+id/tvClientS" />
+
+            <!--tv Number phone-->
+            <TextView
+                android:id="@+id/tvNumero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/numero"
+                android:textSize="@dimen/textSize_m"
+                app:layout_constraintStart_toEndOf="@id/tvNumberS"
+                app:layout_constraintTop_toTopOf="@+id/tvNumberS" />
+
+
+            <!--tv Tipo static-->
+            <TextView
+                android:id="@+id/tvTipoS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tipoS"
+                android:textSize="@dimen/textSize_m"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/tvNumberS"
+                app:layout_constraintTop_toBottomOf="@id/tvNumberS" />
+
+            <!--tv Tipo-->
+            <TextView
+                android:id="@+id/tvTipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tipo"
+                android:textSize="@dimen/textSize_m"
+                app:layout_constraintStart_toEndOf="@id/tvTipoS"
+                app:layout_constraintTop_toTopOf="@+id/tvTipoS" />
+
+
             <!--tv Date Static-->
             <TextView
                 android:id="@+id/tvDateS"
@@ -70,8 +114,7 @@
                 android:textSize="@dimen/textSize_m"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tvClientS"
-                app:layout_constraintTop_toBottomOf="@+id/tvClientS" />
-
+                app:layout_constraintTop_toBottomOf="@+id/tvTipoS" />
 
             <!--tv Date-->
             <TextView

@@ -23,14 +23,17 @@ class ClientAdapter(private val context: Context) : ListAdapter<Client, ClientAd
                  click: ITouchCV?) {
 
             //Declare
-            var name = client.name
-            var day = client.day
-            var month = client.month
-            var year = client.year
-
+            val name = client.name
+            val day = client.day
+            val month = client.month
+            val year = client.year
+            val numberPhone = client.phone
+            val type = client.waterBomb
 
             binding.tvClient.text = name
             binding.tvDate.text = context.getString(R.string.Fecha_fill,day.toString(),month.toString(),year.toString())
+            binding.tvTipo.text = type
+            binding.tvNumero.text = numberPhone
 
             binding.ivClose.setOnClickListener{ clickCLose?.onClickClose(position) }
             binding.cvContainer.setOnClickListener{ click?.onClick(position) }

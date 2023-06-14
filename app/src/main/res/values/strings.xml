@@ -15,6 +15,10 @@
     <string name="todo">Todo</string>
     <string name="nombreS">Nombre:</string>
     <string name="fechaS">Fecha: </string>
+    <string name="tipoS">Tipo: </string>
+    <string name="numeroS">Número: </string>
+    <string name="numero">Número </string>
+    <string name="tipo">Tipo </string>
     <string name="Fecha_fill">%s/%s/%s</string>
     <string name="garant_a">Garantía: </string>
     <string name="sobre_nosotrosx">Sobre nosotros</string>
